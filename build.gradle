@@ -6,6 +6,14 @@ plugins {
 group = 'ru.mentee.power'
 version = '1.0-SNAPSHOT'
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(ProcessResources) {
+    filteringCharset = 'UTF-8'
+}
+
 ext {
     junitVersion = '5.10.0'
     assertjVersion = '3.27.7'
@@ -23,6 +31,7 @@ java {
 
 application {
     mainClass = 'ru.mentee.power.ProgressDemo'
+    applicationDefaultJvmArgs = ["-Dfile.encoding=UTF-8", "-Dconsole.encoding=UTF-8"]
 }
 
 dependencies {

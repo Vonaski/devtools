@@ -1,16 +1,16 @@
 package ru.mentee.power;
 
+import ru.mentee.power.progress.Mentee;
+import ru.mentee.power.progress.ProgressTracker;
+
 public class ProgressDemo {
     static void main() {
-        var progress = new MenteeProgress("Ilyas Iksanov", 2, 20);
+        Mentee mentee1 = new Mentee("Ivan", "Moscow", "Offer", 5, 12);
+        Mentee mentee2 = new Mentee("Mariya", "Moscow", "Offer", 8, 12);
+        Mentee mentee3 = new Mentee("Petr", "Moscow", "Offer", 12, 12);
 
-        System.out.println(progress.summary());
-        if (progress.readyForSprint()) {
-            System.out.println("Status: sprint ready");
-        } else {
-            System.out.println("Status: backlog first");
-        }
+        Mentee[] mentees = new Mentee[]{mentee1, mentee2, mentee3};
 
-        System.out.println("Current branch is: feature/DVT-3");
+        ProgressTracker.calculateTotalProgress(mentees);
     }
 }
