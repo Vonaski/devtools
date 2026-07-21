@@ -233,3 +233,98 @@ $ ./gradlew test
 На 3-й итерации цикла (idx == 2), когда данные по первым двум менти уже суммированы (totalCompleted == 13), выполнено выражение через Alt + F8:
 totalCompleted + mentees[idx].completedLessons()
 * Ожидаемый результат: Выражение возвращает точное значение 25 (13 + 12 за последнюю итерацию), подтверждая математическую корректность алгоритма до шага сохранения в переменную.
+
+## Кодстайл-гайд проекта devtools
+
+Проект следует правилам Google Java Style Guide с адаптацией.
+Автоматическая проверка: ./gradlew checkstyleMain
+
+### 1. Именование методов: camelCase
+До:    public void add_student(Student s) { }
+После: public void addStudent(Student student) { }
+Почему: Java Convention требует camelCase для методов.
+Источник: https://google.github.io/styleguide/javaguide.html#s5.3-camel-case
+
+### 2. Пробелы после if/for/while
+До:    if(condition) {
+После: if (condition) {
+Почему: улучшает читаемость, отделяет ключевое слово от выражения.
+Источник: Oracle Code Conventions — Whitespace
+
+### 3. Длина строки: максимум 120 символов
+До:    public List getStudentsFromSpecificCityWithVeryLongName...
+После: public List getStudentsByCity(String city) {
+Почему: длинные строки затрудняют чтение в редакторе и при code review.
+Источник: https://google.github.io/styleguide/javaguide.html#s4.4-column-limit
+
+### 4. Порядок импортов
+До:    import java.util.List; import java.util.ArrayList; import java.io.File;
+После: import java.io.File; import java.util.ArrayList; import java.util.List;
+Почему: алфавитный порядок упрощает поиск импортов.
+Источник: IntelliJ IDEA → Code → Optimize Imports
+
+### 5. Фигурные скобки для if/for/while
+До:    if (condition) doSomething();
+После: if (condition) { doSomething(); }
+Почему: скобки обязательны даже для однострочных блоков.
+Источник: https://google.github.io/styleguide/javaguide.html#s4.1.1-braces-always-used
+
+## Code Quality
+
+В проекте используется **Checkstyle** для проверки соответствия Java Code Style и **JaCoCo** для контроля покрытия тестами.
+
+### Запуск Checkstyle
+
+Проверка основного и тестового кода:
+
+```bash
+./gradlew checkstyleMain
+./gradlew checkstyleTest
+```
+
+или одновременно:
+
+```bash
+./gradlew check
+```
+
+После выполнения отчеты будут доступны по следующим путям:
+
+```
+build/reports/checkstyle/main.html
+build/reports/checkstyle/test.html
+```
+
+### Запуск тестов и генерация покрытия
+
+```bash
+./gradlew test jacocoTestReport
+```
+
+HTML-отчет JaCoCo:
+
+```
+build/reports/jacoco/test/html/index.html
+```
+
+### Проверка минимального покрытия
+
+```bash
+./gradlew jacocoTestCoverageVerification
+```
+
+Если покрытие инструкций меньше 80%, задача завершится с ошибкой.
+
+### Полная проверка проекта
+
+```bash
+./gradlew clean check
+```
+
+Команда выполнит:
+
+- компиляцию проекта;
+- запуск всех тестов;
+- проверку Checkstyle;
+- генерацию отчетов JaCoCo;
+- проверку минимального покрытия тестами.
