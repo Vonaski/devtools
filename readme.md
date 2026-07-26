@@ -17,7 +17,7 @@
 - IntelliJ IDEA
 
 ---
-
+ 
 # Quick Start
 
 ## Запуск приложения
