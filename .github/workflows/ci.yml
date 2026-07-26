@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - "feature/**"
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Make Gradle executable
+        run: chmod +x gradlew
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+
+      - name: Run Checkstyle
+        run: ./gradlew checkstyleMain
+
+      - name: Run Tests
+        run: ./gradlew test
+
+      - name: Generate JaCoCo Report
+        run: ./gradlew jacocoTestReport
+
+      - name: Verify JaCoCo Coverage
+        run: ./gradlew jacocoTestCoverageVerification
+
+      - name: Build Project
+        run: ./gradlew build
