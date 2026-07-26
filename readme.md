@@ -1,3 +1,4 @@
+[![CI](https://github.com/Vonaski/devtools/actions/workflows/ci.yml/badge.svg)](https://github.com/Vonaski/devtools/actions/workflows/ci.yml)
 # DevTools
 
 Небольшой учебный проект на Java 25 и Gradle, демонстрирующий использование:
