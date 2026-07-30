@@ -10,7 +10,9 @@ public class StudentList {
         studentList = new ArrayList<>();
     }
 
+    // TODO: Add duplicate student validation
     public void addStudent(Student student) {
+        System.out.println(student + " added");
         if (student != null) {
             studentList.add(student);
         }
