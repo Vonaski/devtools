@@ -549,3 +549,151 @@ AI-2 (Gemini):
 - Проверить обработку случая, когда `id == null`.
 
 **Сравнение:** Оба ассистента указали на возможные проблемы с обработкой `null` и предложили улучшить реализацию метода. ChatGPT сделал акцент на контракте метода и использовании `Optional`, тогда как Gemini предложил использовать `Objects.equals` и Stream API для повышения читаемости. Для данной задачи был выбран ответ ChatGPT, так как он уделяет больше внимания безопасности и делает поведение метода более явным.
+
+---
+
+## Технологический стек проекта
+
+### Языки и платформы
+- Java 25 LTS — основной язык
+- Gradle (через Gradle Wrapper) — система сборки
+
+### Инструменты качества кода
+- Checkstyle — статический анализ стиля (config/checkstyle/checkstyle.xml, ./gradlew checkstyleMain)
+- JUnit 5 — тесты (./gradlew test)
+
+### CI/CD
+- GitHub Actions — Checkstyle и тесты на каждый коммит (.github/workflows/)
+
+### Правила кода
+- Стиль: Google Java Style (через Checkstyle)
+- Коммиты: Conventional Commits (feat:, fix:, docs:)
+- Ветки: feature/DVT-X, master — основная; PR обязателен для слияния
+
+---
+
+## Личный глоссарий терминов Dev Tools
+
+### Категория: Java-экосистема
+
+#### JDK — Java Development Kit
+**Определение:** Development environment for building Java applications; includes javac, jar, javadoc and other development tools.
+**Контекст:** нужен для компиляции исходного Java-кода, сборки и разработки приложений.
+**Пример:** `javac Main.java` компилирует программу; IntelliJ IDEA использует установленный JDK как Project SDK.
+**Источник:** https://docs.oracle.com/en/java/javase/
+
+#### JRE — Java Runtime Environment
+**Определение:** Runtime environment that provides the Java Virtual Machine (JVM) and core libraries required to run Java applications.
+**Контекст:** используется для запуска Java-приложений без инструментов разработки.
+**Пример:** Команда `java Main` запускает приложение с помощью JRE.
+**Источник:** https://docs.oracle.com/javase/8/docs/technotes/guides/
+
+#### JVM — Java Virtual Machine
+**Определение:** Virtual machine that executes Java bytecode and provides platform independence.
+**Контекст:** отвечает за выполнение Java-приложений, управление памятью и сборку мусора.
+**Пример:** После компиляции `Main.class` выполняется командой `java Main`.
+**Источник:** https://docs.oracle.com/javase/specs/jvms/
+
+#### IDE — Integrated Development Environment
+**Определение:** Software application that provides tools for writing, debugging, testing and managing source code.
+**Контекст:** используется для разработки программ с автодополнением, отладкой и запуском проектов.
+**Пример:** IntelliJ IDEA автоматически компилирует проект и подсвечивает ошибки.
+**Источник:** https://www.jetbrains.com/help/idea/
+
+#### SDK — Software Development Kit
+**Определение:** Collection of software development tools, libraries and documentation for creating applications on a specific platform.
+**Контекст:** используется для разработки программ под определённую платформу.
+**Пример:** Android SDK предоставляет инструменты для разработки Android-приложений.
+**Источник:** https://developer.android.com/tools
+
+### Категория: Инструменты разработки
+
+#### Gradle Wrapper — Gradle Wrapper
+**Определение:** Scripts that automatically download and use the correct Gradle version for a project.
+**Контекст:** позволяет всем разработчикам использовать одинаковую версию Gradle без отдельной установки.
+**Пример:** `./gradlew build`
+**Источник:** https://docs.gradle.org/current/userguide/gradle_wrapper.html
+
+#### Build Tool — Build Tool
+**Определение:** Software that automates compiling, testing, packaging and dependency management.
+**Контекст:** используется для автоматизации процесса сборки проекта.
+**Пример:** Gradle выполняет команды `build`, `test` и `check`.
+**Источник:** https://docs.gradle.org/current/userguide/what_is_gradle.html
+
+#### Repository — Repository
+**Определение:** Storage location that contains project files and version history managed by Git.
+**Контекст:** используется для хранения исходного кода и совместной разработки.
+**Пример:** `git clone https://github.com/user/project.git`
+**Источник:** https://git-scm.com/docs/gitrepository-layout
+
+#### Commit — Commit
+**Определение:** Snapshot of project changes recorded in a Git repository.
+**Контекст:** используется для сохранения законченной части работы.
+**Пример:** `git commit -m "Add CI workflow"`
+**Источник:** https://git-scm.com/docs/git-commit
+
+#### Branch — Branch
+**Определение:** Independent line of development in a Git repository.
+**Контекст:** используется для разработки новых функций без изменения основной ветки.
+**Пример:** `git checkout -b feature/DVT-12`
+**Источник:** https://git-scm.com/docs/git-branch
+
+### Категория: Процессы и практики
+
+#### Pull Request — Pull Request
+**Определение:** Request to merge changes from one branch into another after review.
+**Контекст:** используется для проверки изменений перед объединением веток.
+**Пример:** Создание Pull Request из `feature/DVT-12` в `master`.
+**Источник:** https://docs.github.com/en/pull-requests
+
+#### Code Review — Code Review
+**Определение:** Process of examining source code to improve quality and detect defects before merging.
+**Контекст:** помогает находить ошибки и соблюдать стандарты кодирования.
+**Пример:** Разработчик оставляет замечания в Pull Request перед одобрением.
+**Источник:** https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests
+
+#### CI/CD — Continuous Integration / Continuous Delivery
+**Определение:** Development practices that automate building, testing and software delivery.
+**Контекст:** используется для автоматического запуска сборки и тестов после каждого изменения.
+**Пример:** GitHub Actions запускает Checkstyle и JUnit после `git push`.
+**Источник:** https://docs.github.com/en/actions
+
+#### Checkstyle — Checkstyle
+**Определение:** Static analysis tool that checks Java source code against coding standards.
+**Контекст:** используется для проверки соответствия кода выбранному стилю.
+**Пример:** `./gradlew checkstyleMain`
+**Источник:** https://checkstyle.sourceforge.io/
+
+#### Debug — Debugging
+**Определение:** Process of identifying and fixing defects in software using debugging tools.
+**Контекст:** используется для поиска причин ошибок во время выполнения программы.
+**Пример:** В IntelliJ IDEA программа запускается в режиме Debug с пошаговым выполнением кода.
+**Источник:** https://www.jetbrains.com/help/idea/debugging-code.html
+
+---
+
+## Вопросы по сложным терминам
+
+### Вопрос 1: Gradle Wrapper
+**Задача:** Понять, зачем в проекте используется Gradle Wrapper и чем он отличается от обычной установленной версии Gradle.
+
+**Контекст:** При выполнении лабораторной работы все команды запускались через `./gradlew`, хотя Gradle уже установлен на компьютере.
+
+**Ограничения:** Понимаю, что Wrapper связан с Gradle, но пока не ясно, зачем хранить дополнительные файлы (`gradlew`, `gradlew.bat`, папку `gradle/wrapper`) в репозитории.
+
+**Ожидаемый результат:** Понять принцип работы Gradle Wrapper, его преимущества для командной разработки и случаи, когда следует использовать именно его.
+
+**Критерии успеха:** Смогу объяснить, почему в проекте рекомендуется запускать `./gradlew build`, а не `gradle build`, и какую проблему это решает.
+
+---
+
+### Вопрос 2: CI/CD
+**Задача:** Разобраться, как работает процесс Continuous Integration и Continuous Delivery в GitHub Actions.
+
+**Контекст:** В проекте настроен workflow, который автоматически запускает Checkstyle, тесты и сборку после каждого `push` и `pull request`.
+
+**Ограничения:** Понимаю, что проверки выполняются автоматически, но не до конца понимаю последовательность этапов и их назначение.
+
+**Ожидаемый результат:** Понять, какие этапы включает CI/CD, что происходит после отправки изменений в репозиторий и почему автоматические проверки важны перед слиянием веток.
+
+**Критерии успеха:** Смогу самостоятельно объяснить полный путь изменений от команды `git push` до успешного завершения GitHub Actions и слияния Pull Request.
